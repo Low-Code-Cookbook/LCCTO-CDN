@@ -11,11 +11,14 @@
             --primary-purple: #401d50;
             --secondary-purple: #6b2c8c;
             --light-purple: #f0e6f5;
+            --vh: 1vh;
         }
         
         body {
             background-color: black;
             color: white;
+            min-height: 100vh;
+            min-height: calc(var(--vh, 1vh) * 100);
         }
 
         #loginScreen {
@@ -23,25 +26,28 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
             background-color: black;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
+            padding: 1rem;
         }
 
         #loginForm {
             background-color: white;
-            padding: 2rem;
+            padding: min(2rem, 5vw);
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: min(400px, 90vw);
+            margin: 1rem;
         }
 
         #loginForm img {
-            max-width: 200px;
+            max-width: min(200px, 60vw);
             margin: 0 auto 1.5rem;
             display: block;
         }
@@ -50,12 +56,40 @@
             color: var(--primary-purple);
             margin-bottom: 1.5rem;
             text-align: center;
+            font-size: clamp(1.25rem, 4vw, 1.5rem);
         }
 
         #loginForm .form-control {
             background-color: white;
             color: #212529;
             border: 1px solid #dee2e6;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            padding: min(1rem, 3vw);
+        }
+
+        #loginForm .btn-lg {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            padding: min(1rem, 3vw);
+        }
+
+        @media (max-width: 576px) {
+            #loginForm {
+                margin: 0.5rem;
+                padding: min(1.5rem, 4vw);
+            }
+
+            #loginForm img {
+                max-width: min(150px, 50vw);
+                margin-bottom: 1rem;
+            }
+
+            #loginForm .form-control {
+                padding: 0.75rem;
+            }
+
+            #loginForm .btn-lg {
+                padding: 0.75rem;
+            }
         }
 
         #loginForm .form-control:focus {
@@ -77,6 +111,14 @@
         .navbar {
             background-color: #1a1a1a !important;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-brand {
+            font-size: 1.1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .card {
@@ -93,18 +135,220 @@
             transform: translateY(-5px);
         }
 
-        .file-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-purple);
-        }
-
         .file-preview {
             width: 100%;
-            height: 200px;
+            height: min(200px, 40vw);
             object-fit: cover;
             border-radius: 0.375rem;
             margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+                max-width: 200px;
+            }
+
+            .navbar .btn {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.875rem;
+            }
+
+            .search-container {
+                padding: 0.75rem 0;
+            }
+
+            .search-container .d-flex {
+                flex-direction: column;
+                gap: 0.5rem !important;
+            }
+
+            .search-container .input-group {
+                width: 100%;
+            }
+
+            #folderSelect {
+                width: 100% !important;
+                margin-top: 0.5rem;
+            }
+
+            .container {
+                padding-left: 0;
+                padding-right: 0;
+                max-width: 100%;
+            }
+
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .col-12, .col-sm-6, .col-md-4, .col-lg-3 {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .card {
+                margin-bottom: 1rem;
+            }
+
+            .modal-dialog {
+                margin: 0.5rem;
+                max-width: calc(100% - 1rem);
+            }
+
+            .modal-content {
+                border-radius: 0.5rem;
+            }
+
+            .modal-header {
+                padding: 1rem;
+                border-bottom-color: #dee2e6;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .modal-footer {
+                padding: 0.75rem;
+            }
+
+            .modal-image {
+                max-width: 100%;
+                max-height: 70vh;
+                object-fit: contain;
+            }
+
+            .modal-url-container {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                background-color: #f8f9fa;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+                margin-top: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .modal-url {
+                word-break: break-all;
+                font-size: 1.1rem;
+                flex: 1;
+                min-width: 200px;
+            }
+
+            .copy-btn {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            @media (max-width: 576px) {
+                .modal-dialog {
+                    margin: 0;
+                    max-width: 100%;
+                    height: 100vh;
+                    display: flex;
+                    align-items: stretch;
+                }
+
+                .modal-content {
+                    border-radius: 0;
+                    height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #000;
+                }
+
+                .modal-header {
+                    padding: 1rem;
+                    background-color: #1a1a1a;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                }
+
+                .modal-header .modal-title {
+                    color: white;
+                    font-size: 1.1rem;
+                }
+
+                .modal-body {
+                    padding: 0;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                    background-color: #000;
+                }
+
+                .modal-image {
+                    max-height: none;
+                    height: 100%;
+                    width: 100%;
+                    object-fit: contain;
+                    padding: 0.5rem;
+                }
+
+                .modal-url-container {
+                    margin: 0;
+                    padding: 1rem;
+                    background-color: #1a1a1a;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                }
+
+                .modal-url {
+                    font-size: 0.875rem;
+                    min-width: 150px;
+                    color: white;
+                }
+
+                .modal-footer {
+                    padding: 1rem;
+                    background-color: #1a1a1a;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                    display: flex;
+                    gap: 0.5rem;
+                }
+
+                .modal-footer .btn {
+                    flex: 1;
+                    min-width: 120px;
+                    padding: 0.75rem;
+                    font-size: 1rem;
+                }
+
+                .btn-close {
+                    filter: invert(1) grayscale(100%) brightness(200%);
+                    padding: 0.5rem;
+                    margin: -0.5rem;
+                }
+
+                .copy-btn {
+                    background-color: #333 !important;
+                    border-color: #333 !important;
+                    color: white !important;
+                }
+
+                .copy-btn:hover {
+                    background-color: #444 !important;
+                    border-color: #444 !important;
+                }
+
+                .copy-btn.copied {
+                    background-color: #198754 !important;
+                    border-color: #198754 !important;
+                }
+            }
+        }
+
+        /* Add viewport height fix for mobile browsers */
+        @media screen and (max-width: 768px) {
+            :root {
+                --vh: 1vh;
+            }
         }
 
         .file-icon {
@@ -114,7 +358,7 @@
         }
 
         .icon-container {
-            height: 200px;
+            height: min(200px, 40vw);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -130,7 +374,7 @@
             position: sticky;
             top: 0;
             background: black;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -307,36 +551,36 @@
     <!-- Main Content -->
     <div id="mainContent">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand fw-bold" href="#">
-                    Launch By Lunch Branding CDN
+            <div class="container-fluid px-2 px-md-3">
+                <a class="navbar-brand text-truncate" href="#">
+                    Low Code CTO Branding CDN
                 </a>
-                <div class="d-flex ms-auto gap-2">
-                    <button onclick="window.open('https://github.com/Low-Code-Cookbook/LCCTO-CDN', '_blank')" class="btn btn-outline-light" title="View on GitHub" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Use this button to access the repo and update files.">
-                        <i class="bi bi-github me-1"></i> GitHub
+                <div class="d-flex gap-2">
+                    <button onclick="window.open('https://github.com/Low-Code-Cookbook/LCCTO-CDN', '_blank')" class="btn btn-outline-light btn-sm" title="View on GitHub" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Use this button to access the repo and update files.">
+                        <i class="bi bi-github me-1"></i> <span class="d-none d-sm-inline">GitHub</span>
                     </button>
-                    <button onclick="logout()" class="btn btn-outline-light">
-                        <i class="bi bi-box-arrow-right me-1"></i> Logout
+                    <button onclick="logout()" class="btn btn-outline-light btn-sm">
+                        <i class="bi bi-box-arrow-right me-1"></i> <span class="d-none d-sm-inline">Logout</span>
                     </button>
                 </div>
             </div>
         </nav>
 
-        <div class="container py-4">
+        <div class="container-fluid px-2 px-md-3 py-4">
             <div class="search-container mb-4">
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-md-row gap-2">
                     <div class="input-group">
                         <span class="input-group-text">
                             <i class="bi bi-search"></i>
                         </span>
                         <input type="text" id="searchInput" class="form-control" placeholder="Search files...">
                     </div>
-                    <select id="folderSelect" class="form-select" style="width: auto;">
+                    <select id="folderSelect" class="form-select w-100 w-md-auto">
                         <option value="">All Folders</option>
                     </select>
                 </div>
-                <div class="text-center mt-3 text-white-50">
-                    <small><i class="bi bi-info-circle me-1"></i> Click on an image to see its size, dimensions and public URL</small>
+                <div class="text-center mt-3 text-white-50 small">
+                    <i class="bi bi-info-circle me-1"></i> Click on an image to see its size, dimensions and public URL
                 </div>
             </div>
 
@@ -415,6 +659,47 @@
         function showMainContent() {
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
+            
+            // Show loading spinner
+            document.getElementById('file-list').innerHTML = `
+                <div class="col-12 text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `;
+            
+            // Initialize folder structure and fetch files
+            fetchFolderContents()
+                .then(files => {
+                    if (!files || files.length === 0) {
+                        throw new Error('No files found');
+                    }
+                    
+                    allFiles = files;
+                    folderStructure.clear(); // Clear existing folders
+                    
+                    // Build folder structure
+                    files.forEach(file => {
+                        const folderPath = file.path.split('/').slice(0, -1).join('/');
+                        if (folderPath) {
+                            folderStructure.add(folderPath);
+                        }
+                    });
+                    
+                    updateFolderDropdown();
+                    renderFiles(files);
+                })
+                .catch(error => {
+                    console.error('Error fetching files:', error);
+                    document.getElementById('file-list').innerHTML = `
+                        <div class="col-12 text-center">
+                            <div class="alert alert-danger">
+                                Error loading files. Please try again later.
+                            </div>
+                        </div>
+                    `;
+                });
         }
 
         // Add enter key support for password input
@@ -438,6 +723,9 @@
         async function fetchFolderContents(path = '') {
             try {
                 const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const contents = await response.json();
                 
                 // If it's not an array, it's a single file
@@ -462,7 +750,7 @@
                 return results.flat().filter(item => item !== null);
             } catch (error) {
                 console.error('Error fetching folder contents:', error);
-                return [];
+                throw error; // Re-throw to handle in the calling function
             }
         }
 
@@ -506,7 +794,7 @@
             const isEpsOrIco = file.name.toLowerCase().endsWith('.eps') || file.name.toLowerCase().endsWith('.ico');
 
             return `
-                <div class="col-md-4 col-lg-3 mb-4 file-card">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 file-card">
                     <div class="card h-100">
                         ${isImage && !isEpsOrIco ? 
                             `<img src="${cdnUrl}" class="file-preview" alt="${file.name}" 
@@ -643,31 +931,6 @@
                 alert('Failed to copy URL to clipboard');
             });
         }
-
-        // Fetch and render all files
-        fetchFolderContents()
-            .then(files => {
-                allFiles = files;
-                // Build folder structure
-                files.forEach(file => {
-                    const folderPath = file.path.split('/').slice(0, -1).join('/');
-                    if (folderPath) {
-                        folderStructure.add(folderPath);
-                    }
-                });
-                updateFolderDropdown();
-                renderFiles(files);
-            })
-            .catch(error => {
-                console.error('Error fetching files:', error);
-                document.getElementById('file-list').innerHTML = `
-                    <div class="col-12 text-center">
-                        <div class="alert alert-danger">
-                            Error loading files. Please try again later.
-                        </div>
-                    </div>
-                `;
-            });
 
         // Enable Bootstrap tooltips
         document.addEventListener('DOMContentLoaded', function () {
